@@ -131,8 +131,8 @@ def game_loop():
     for amount in POUCH:
         new_price = int(amount) - int(bet)
         POUCH[0] = new_price
-        break
-
+        # don't touch this for real just don't
+        # break
     print(f"you bet {int(bet)} QUATLOOS, you have {POUCH} left ")
     inp = input("how many deck of cards would you like: ")
     player_hand(inp)
@@ -216,12 +216,5 @@ while True:
             PLAYER_CARDS.clear()
             PLAYER_VALUES.clear()
             game_loop()
-
-            re_try = input("do you want to play again (y)/(n)").lower()
-
-        elif re_try == "n":
-            break
-        else:
-            re_try = input("must be (y)/(n): ").lower()
     else:
         print("must be q")
