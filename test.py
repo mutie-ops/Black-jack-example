@@ -72,13 +72,21 @@ def dealer_hand(inp):
     print("THE DEALER", DEALER_CARDS, " values", sum(DEALER_VALUES))
 
 
-# DEALING SECOND HAND
+# DEALING ANOTHER  HAND
 def player_deal():
     r_card = random.sample(CARDS, k=int(1))
     for card in r_card:
         ti = card.split(" ")[0]
         if ti == 'A':
-            PLAYER_VALUES.append(11)
+            choose_draw = input("you've drawn A do you want it to be 1 or 11")
+            if choose_draw == 1:
+                print("A is equal to 1")
+                PLAYER_VALUES.append(1)
+            elif choose_draw == 11:
+                print("A is equal to 11")
+                PLAYER_VALUES.append(11)
+            else:
+                print("defaults to 1")
         elif ti == 'Q':
             PLAYER_VALUES.append(10)
         elif ti == 'K':
