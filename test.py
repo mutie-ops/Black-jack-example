@@ -131,7 +131,7 @@ def game_loop():
     elif inp2 == 'n':
         pass
     print(PLAYER_VALUES)
-    print("THE YOUR", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
+    print("YOUR HAND", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
 
     'DEALING SECOND HAND OR FAULT FOR DEALER'
     choice = ['DEAL', 'HALT']
@@ -153,9 +153,8 @@ def game_loop():
     elif sum_player == 21:
         print("dealer bust player wins")
         for amount in POUCH:
-            new_price = int(amount) - int(bet)
+            new_price = int(amount) + int(bet) * 2
             POUCH[0] = new_price
-        # print(f"you bet {int(bet)} QUATLOOS, you have {POUCH} left ")
         print(f"You have {POUCH} left ")
 
     elif sum_dealer > 21 and sum_player < 21:
@@ -169,7 +168,7 @@ def game_loop():
         print("player bust dealer wins")
         print(f"You have {POUCH} left ")
 
-    if sum_player and sum_dealer > 21:
+    elif sum_player and sum_dealer > 21:
         print("both bust try again")
 
     elif minimum_p > minimum_d:
@@ -189,9 +188,11 @@ def game_loop():
         print("draw")
         print(f"You have {POUCH} left ")
 
+
 # refactor loop game
-start = input("press q to start game: ").lower()
+
 while True:
+    start = input("press q to start game: ").lower()
     if start == 'q':
         game_loop()
         re_try = input("do you want to play again (y)/(n)").lower()
@@ -201,10 +202,12 @@ while True:
             PLAYER_CARDS.clear()
             PLAYER_VALUES.clear()
             game_loop()
-            break
+            re_try = input("do you want to play again (y)/(n)").lower()
+            # break
         elif re_try == "n":
             break
         else:
             re_try = input("must be (y)/(n): ").lower()
     else:
-        break
+        print("must be q")
+
