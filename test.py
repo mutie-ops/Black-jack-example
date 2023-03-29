@@ -79,10 +79,15 @@ def dealer_hand(inp):
 def player_deal():
     r_card = random.sample(CARDS, k=int(1))
     for card in r_card:
-
         ti = card.split(" ")[0]
         if ti == 'A':
-            PLAYER_VALUES.append(11)
+            user_inp = input("do you want A to be 1 or 11")
+            if int(user_inp) == 1:
+                print("A is equal to 1")
+                PLAYER_VALUES.append(1)
+            else:
+                print("A is equal to 11")
+                PLAYER_VALUES.append(11)
         elif ti == 'Q':
             PLAYER_VALUES.append(10)
         elif ti == 'K':
@@ -103,7 +108,13 @@ def dealer_deal():
     for card in r_card:
         ti = card.split(" ")[0]
         if ti == 'A':
-            DEALER_VALUES.append(11)
+            user_inp = input("do you want A to be 1 or 11")
+            if int(user_inp) == 1:
+                print("A is equal to 1")
+                DEALER_VALUES.append(1)
+            else:
+                print("A is equal to 11")
+                DEALER_VALUES.append(11)
         elif ti == 'Q':
             DEALER_VALUES.append(10)
         elif ti == 'K':
@@ -136,7 +147,7 @@ def game_loop():
     inp = input("how many deck of cards would you like: ")
     player_hand(inp)
     dealer_hand(inp)
-    inp2 = input('do you want to deal or not: (Y)/(N): ').lower()
+    inp2 = input('do you want to hit or not: (Y)/(N): ').lower()
     if inp2 == 'y':
         player_deal()
     elif inp2 == 'n':
@@ -162,15 +173,18 @@ def game_loop():
         print("player bust dealer wins")
         print(f"You have {POUCH} left ")
 
-    elif sum_dealer and sum_player == 21:
-        print("draw")
-        print(f"You have {POUCH} left ")
+
 
     elif sum_player == 21:
         print("dealer bust player wins")
         for amount in POUCH:
             new_price = int(amount) + int(bet) * 2
             POUCH[0] = new_price
+        print(f"You have {POUCH} left ")
+
+
+    elif sum_dealer and sum_player == 21:
+        print("draw")
         print(f"You have {POUCH} left ")
 
     elif sum_dealer > 21 and sum_player < 21:
