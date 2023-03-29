@@ -132,7 +132,6 @@ def game_loop():
         new_price = int(amount) - int(bet)
         POUCH[0] = new_price
         # don't touch this for real just don't
-        # break
     print(f"you bet {int(bet)} QUATLOOS, you have {POUCH} left ")
     inp = input("how many deck of cards would you like: ")
     player_hand(inp)
