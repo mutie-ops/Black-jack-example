@@ -176,9 +176,7 @@ def game_loop():
         for amount in POUCH:
             new_price = int(amount) + int(bet) * 2
             POUCH[0] = new_price
-        # print(f"you bet {int(bet)} QUATLOOS, you have {POUCH} left "))
         print(f"You have {POUCH} left ")
-
 
     elif minimum_d > minimum_p:
         print("player bust dealer wins")
@@ -202,6 +200,7 @@ while True:
             PLAYER_CARDS.clear()
             PLAYER_VALUES.clear()
             game_loop()
+
             re_try = input("do you want to play again (y)/(n)").lower()
 
         elif re_try == "n":
@@ -210,4 +209,3 @@ while True:
             re_try = input("must be (y)/(n): ").lower()
     else:
         print("must be q")
-
