@@ -21,9 +21,6 @@ CARDS = ['A ♦', 'A ♣', 'A ♥', 'A ♠',
          '10 ♦', '10 ♣', '10 ♥', '10 ♠'
          ]
 
-# has not been introduced:
-RETRIEVER = ["RET 🃏"]
-
 DEALER_CARDS = []
 DEALER_VALUES = []
 
@@ -48,8 +45,12 @@ def player_hand(inp):
             PLAYER_VALUES.append(10)
         elif ti == 'J':
             PLAYER_VALUES.append(10)
+        elif ti == 'RET':
+            PLAYER_VALUES.clear()
+            PLAYER_VALUES.append(21)
         else:
             PLAYER_VALUES.append(int(ti))
+
     print("THE YOUR", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
 
 
@@ -67,6 +68,9 @@ def dealer_hand(inp):
             DEALER_VALUES.append(10)
         elif ti == 'J':
             DEALER_VALUES.append(10)
+        elif ti == 'RET':
+            DEALER_VALUES.clear()
+            DEALER_VALUES.append(21)
         else:
             DEALER_VALUES.append(int(ti))
     print("THE DEALER", DEALER_CARDS, " values", sum(DEALER_VALUES))
@@ -86,6 +90,9 @@ def player_deal():
             PLAYER_VALUES.append(10)
         elif ti == 'J':
             PLAYER_VALUES.append(10)
+        elif ti == 'RET':
+            PLAYER_VALUES.clear()
+            PLAYER_VALUES.append(21)
         else:
             PLAYER_VALUES.append(int(ti))
         PLAYER_CARDS.append(card)
@@ -104,6 +111,9 @@ def dealer_deal():
             DEALER_VALUES.append(10)
         elif ti == 'J':
             DEALER_VALUES.append(10)
+        elif ti == 'RET':
+            DEALER_VALUES.clear()
+            DEALER_VALUES.append(21)
         else:
             DEALER_VALUES.append(int(ti))
         DEALER_CARDS.append(card)
@@ -112,8 +122,11 @@ def dealer_deal():
 
 # Launch game
 def game_loop():
+    retriever = input('How many retivers do you want ')
+    for i in range(int(retriever)):
+        CARDS.append("RET 🃏")
+    print(CARDS)
     print(f"you have {POUCH} QUATLOOS")
-
     bet = input("how much QUATLOOS would you like to bet: ")
 
     for amount in POUCH:
@@ -125,7 +138,6 @@ def game_loop():
     inp = input("how many deck of cards would you like: ")
     player_hand(inp)
     dealer_hand(inp)
-
     inp2 = input('do you want to deal or not: (Y)/(N): ').lower()
     if inp2 == 'y':
         player_deal()
@@ -151,6 +163,11 @@ def game_loop():
     if sum_player > 21 and sum_dealer < 21:
         print("player bust dealer wins")
         print(f"You have {POUCH} left ")
+
+    elif sum_dealer and sum_player == 21:
+        print("draw")
+        print(f"You have {POUCH} left ")
+
     elif sum_player == 21:
         print("dealer bust player wins")
         for amount in POUCH:
