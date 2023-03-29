@@ -76,6 +76,7 @@ def dealer_hand(inp):
 def player_deal():
     r_card = random.sample(CARDS, k=int(1))
     for card in r_card:
+
         ti = card.split(" ")[0]
         if ti == 'A':
             PLAYER_VALUES.append(11)
