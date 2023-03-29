@@ -1,6 +1,5 @@
 # creating black jack
 
-
 # retrievers and random seed not introduced
 # try refactoring the code
 import random
@@ -122,7 +121,7 @@ def dealer_deal():
 
 # Launch game
 def game_loop():
-    retriever = input('How many retivers do you want ')
+    retriever = input('How many retrievers do you want')
     for i in range(int(retriever)):
         CARDS.append("RET 🃏")
     print(CARDS)
@@ -206,7 +205,6 @@ def game_loop():
 
 
 # refactor loop game
-
 while True:
     start = input("press q to start game: ").lower()
     if start == 'q':
