@@ -44,11 +44,15 @@ def player_hand(inp):
             PLAYER_VALUES.append(10)
         elif ti == 'J':
             PLAYER_VALUES.append(10)
+
         elif ti == 'RET':
-            PLAYER_VALUES.clear()
             PLAYER_VALUES.append(21)
         else:
             PLAYER_VALUES.append(int(ti))
+
+        if 'RET 🃏' in PLAYER_CARDS:
+            PLAYER_VALUES.clear()
+            PLAYER_VALUES.append(21)
 
     print("THE YOUR", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
 
@@ -67,12 +71,18 @@ def dealer_hand(inp):
             DEALER_VALUES.append(10)
         elif ti == 'J':
             DEALER_VALUES.append(10)
+
         elif ti == 'RET':
-            DEALER_VALUES.clear()
             DEALER_VALUES.append(21)
         else:
             DEALER_VALUES.append(int(ti))
-    print("THE DEALER", DEALER_CARDS, " values", sum(DEALER_VALUES))
+
+    if 'RET 🃏' in PLAYER_CARDS:
+        DEALER_VALUES.clear()
+        DEALER_VALUES.append(21)
+
+
+# print("THE DEALER", DEALER_CARDS, " values", sum(DEALER_VALUES))
 
 
 # DEALING SECOND HAND
@@ -95,12 +105,18 @@ def player_deal():
         elif ti == 'J':
             PLAYER_VALUES.append(10)
         elif ti == 'RET':
-            PLAYER_VALUES.clear()
             PLAYER_VALUES.append(21)
+
         else:
             PLAYER_VALUES.append(int(ti))
         PLAYER_CARDS.append(card)
-    print("player deal", PLAYER_VALUES)
+
+    if 'RET 🃏' in PLAYER_CARDS:
+        PLAYER_VALUES.clear()
+        PLAYER_VALUES.append(21)
+
+
+#  print("player deal", PLAYER_VALUES)
 
 
 def dealer_deal():
@@ -121,21 +137,28 @@ def dealer_deal():
             DEALER_VALUES.append(10)
         elif ti == 'J':
             DEALER_VALUES.append(10)
+
         elif ti == 'RET':
-            DEALER_VALUES.clear()
             DEALER_VALUES.append(21)
         else:
             DEALER_VALUES.append(int(ti))
         DEALER_CARDS.append(card)
-    print("DEALER deal", DEALER_VALUES)
+
+    if 'RET 🃏' in PLAYER_CARDS:
+        DEALER_VALUES.clear()
+        DEALER_VALUES.append(21)
+
+
+#  print("DEALER deal", DEALER_VALUES)
 
 
 # Launch game
 def game_loop():
-    retriever = input('How many retrievers do you want')
-    for i in range(int(retriever)):
+    # how many retrievers present
+    retriever = input('How many retrievers do you want: ')
+    for _ in range(int(retriever)):
         CARDS.append("RET 🃏")
-    print(CARDS)
+    # print(CARDS)
     print(f"you have {POUCH} QUATLOOS")
     bet = input("how much QUATLOOS would you like to bet: ")
 
@@ -145,14 +168,16 @@ def game_loop():
         # don't touch this for real just don't
     print(f"you bet {int(bet)} QUATLOOS, you have {POUCH} left ")
     inp = input("how many deck of cards would you like: ")
+
     player_hand(inp)
     dealer_hand(inp)
+
     inp2 = input('do you want to hit or not: (Y)/(N): ').lower()
     if inp2 == 'y':
         player_deal()
     elif inp2 == 'n':
         pass
-    print(PLAYER_VALUES)
+    # print(PLAYER_VALUES)
     print("YOUR HAND", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
 
     'DEALING SECOND HAND OR FAULT FOR DEALER'
@@ -173,7 +198,9 @@ def game_loop():
         print("player bust dealer wins")
         print(f"You have {POUCH} left ")
 
-
+    elif sum_dealer and sum_player == 21:
+        print("draw")
+        print(f"You have {POUCH} left ")
 
     elif sum_player == 21:
         print("dealer bust player wins")
@@ -183,9 +210,6 @@ def game_loop():
         print(f"You have {POUCH} left ")
 
 
-    elif sum_dealer and sum_player == 21:
-        print("draw")
-        print(f"You have {POUCH} left ")
 
     elif sum_dealer > 21 and sum_player < 21:
         print("dealer bust player wins")
