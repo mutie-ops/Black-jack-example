@@ -152,7 +152,6 @@ def dealer_deal():
 
 # Launch game
 def game_loop():
-
     inp = input("how many deck of cards would you like?: ")
     seed = str(input("What seed would you like to use? "))
     random.seed(seed)
@@ -244,15 +243,12 @@ def game_loop():
 
 # refactor loop game
 while True:
-    start = input("press q to start game: ").lower()
-    if start == 'q':
+    game_loop()
+    re_try = input("do you want to play again (y)/(n)").lower()
+    if re_try == "y":
+        DEALER_CARDS.clear()
+        DEALER_VALUES.clear()
+        PLAYER_CARDS.clear()
+        PLAYER_VALUES.clear()
         game_loop()
-        re_try = input("do you want to play again (y)/(n)").lower()
-        if re_try == "y":
-            DEALER_CARDS.clear()
-            DEALER_VALUES.clear()
-            PLAYER_CARDS.clear()
-            PLAYER_VALUES.clear()
-            game_loop()
-    else:
-        print("must be q")
+
