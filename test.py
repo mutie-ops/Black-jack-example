@@ -244,15 +244,17 @@ def game_loop():
 
 
 # refactor loop game
-while True:
-    game_loop()
-    re_try = input("do you want to play again (y)/(n)? ").lower()
-    if re_try == "y":
-        DEALER_CARDS.clear()
-        DEALER_VALUES.clear()
-        PLAYER_CARDS.clear()
-        PLAYER_VALUES.clear()
+if __name__ == '__main__':
+    while True:
         game_loop()
+        re_try = input("do you want to play again (y)/(n)? ").lower()
+        if re_try == "y":
+            DEALER_CARDS.clear()
+            DEALER_VALUES.clear()
+            PLAYER_CARDS.clear()
+            PLAYER_VALUES.clear()
+            game_loop()
 
-    else:
-        print(f"You have ended the game with {POUCH} quatloos")
+        else:
+            for pouch in POUCH:
+                print(f"You have ended the game with {pouch} quatloos")
