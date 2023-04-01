@@ -52,7 +52,7 @@ def player_hand(inp):
             PLAYER_VALUES.clear()
             PLAYER_VALUES.append(21)
 
-    print("THE YOUR", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
+    print("Your cards", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
 
 
 def dealer_hand(inp):
@@ -157,7 +157,7 @@ def game_loop():
     random.seed(seed)
 
     # how many retrievers present
-    retriever = input('How many retrievers do you want?: ')
+    retriever = input('How many retrievers do you want to add?: ')
 
     for _ in range(int(retriever)):
         CARDS.append("RET 🃏")
@@ -244,11 +244,14 @@ def game_loop():
 # refactor loop game
 while True:
     game_loop()
-    re_try = input("do you want to play again (y)/(n)").lower()
+    re_try = input("do you want to play again (y)/(n)? ").lower()
     if re_try == "y":
         DEALER_CARDS.clear()
         DEALER_VALUES.clear()
         PLAYER_CARDS.clear()
         PLAYER_VALUES.clear()
         game_loop()
+
+    else:
+        print(f"You have ended the game with {POUCH} quatloos ")
 
