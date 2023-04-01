@@ -188,7 +188,7 @@ def game_loop():
 
     if choose == 'DEAL':
         dealer_deal()
-    print("THE DEALER", DEALER_CARDS, " values", sum(DEALER_VALUES))
+    print("Dealer's hand", DEALER_CARDS, " values", sum(DEALER_VALUES))
 
     sum_dealer = sum(DEALER_VALUES)
     sum_player = sum(PLAYER_VALUES)
@@ -206,6 +206,7 @@ def game_loop():
 
     elif sum_player == 21:
         print("dealer bust player wins")
+        print("you have blackjack")
         for amount in POUCH:
             new_price = int(amount) + int(bet) * 2
             POUCH[0] = new_price
@@ -227,6 +228,7 @@ def game_loop():
 
     elif minimum_p > minimum_d:
         print("dealer bust player wins")
+        print("you have blackjack")
         for amount in POUCH:
             new_price = int(amount) + int(bet) * 2
             POUCH[0] = new_price
@@ -253,5 +255,4 @@ while True:
         game_loop()
 
     else:
-        print(f"You have ended the game with {POUCH} quatloos ")
-
+        print(f"You have ended the game with {POUCH} quatloos")
