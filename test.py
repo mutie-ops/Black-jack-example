@@ -1,5 +1,4 @@
 # creating black jack
-
 import random
 
 CARDS = ['A ♦', 'A ♣', 'A ♥', 'A ♠',
@@ -42,7 +41,6 @@ def player_hand(inp):
             PLAYER_VALUES.append(10)
         elif ti == 'J':
             PLAYER_VALUES.append(10)
-
         elif ti == 'RET':
             PLAYER_VALUES.append(21)
         else:
@@ -52,7 +50,11 @@ def player_hand(inp):
             PLAYER_VALUES.clear()
             PLAYER_VALUES.append(21)
 
-    print("Your cards", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
+    sum_a = 0
+    for element in PLAYER_VALUES:
+        sum_a += element
+
+    print("Your cards", PLAYER_CARDS, " values", sum_a)
 
 
 def dealer_hand(inp):
@@ -83,7 +85,7 @@ def dealer_hand(inp):
 # print("THE DEALER", DEALER_CARDS, " values", sum(DEALER_VALUES))
 
 
-# DEALING SECOND HAND
+# DEALING HAND
 def player_deal():
     r_card = random.sample(CARDS, k=int(1))
     for card in r_card:
@@ -115,8 +117,6 @@ def player_deal():
 
 
 #  print("player deal", PLAYER_VALUES)
-
-
 def dealer_deal():
     r_card = random.sample(CARDS, k=int(1))
     for card in r_card:
@@ -158,7 +158,6 @@ def game_loop():
 
     # how many retrievers present
     retriever = input('How many retrievers do you want to add?: ')
-
     for _ in range(int(retriever)):
         CARDS.append("RET 🃏")
     # print(CARDS)
@@ -180,7 +179,13 @@ def game_loop():
     elif inp2 == 'stay':
         pass
     # print(PLAYER_VALUES)
-    print("YOUR HAND", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
+
+    sum_a = 0
+    for element in PLAYER_VALUES:
+        sum_a += element
+
+    print("Your cards", PLAYER_CARDS, " values", sum_a)
+    # print("YOUR HAND", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
 
     'DEALING SECOND HAND OR FAULT FOR DEALER'
     choice = ['DEAL', 'HALT']
@@ -188,7 +193,13 @@ def game_loop():
 
     if choose == 'DEAL':
         dealer_deal()
-    print("Dealer's hand", DEALER_CARDS, " values", sum(DEALER_VALUES))
+
+    sum_b = 0
+    for element in DEALER_VALUES:
+        sum_b += element
+
+    # print("Your cards", PLAYER_CARDS, " values", sum_a)
+    print("Dealer's hand", DEALER_CARDS, " values", sum_b)
 
     sum_dealer = sum(DEALER_VALUES)
     sum_player = sum(PLAYER_VALUES)
