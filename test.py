@@ -172,7 +172,6 @@ def game_loop():
         # don't touch this for real just don't
     print(f"you bet {int(bet)} quatloos, you have {POUCH} left ")
 
-
     player_hand(inp)
     dealer_hand(inp)
 
