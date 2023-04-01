@@ -1,7 +1,5 @@
 # creating black jack
 
-# retrievers and random seed not introduced
-# try refactoring the code
 import random
 
 CARDS = ['A ♦', 'A ♣', 'A ♥', 'A ♠',
@@ -154,28 +152,34 @@ def dealer_deal():
 
 # Launch game
 def game_loop():
+
+    inp = input("how many deck of cards would you like?: ")
+    seed = str(input("What seed would you like to use? "))
+    random.seed(seed)
+
     # how many retrievers present
-    retriever = input('How many retrievers do you want: ')
+    retriever = input('How many retrievers do you want?: ')
+
     for _ in range(int(retriever)):
         CARDS.append("RET 🃏")
     # print(CARDS)
-    print(f"you have {POUCH} QUATLOOS")
-    bet = input("how much QUATLOOS would you like to bet: ")
+    print(f"you have {POUCH}  quatloos")
+    bet = input("how much quatloos would you like to bet?: ")
 
     for amount in POUCH:
         new_price = int(amount) - int(bet)
         POUCH[0] = new_price
         # don't touch this for real just don't
-    print(f"you bet {int(bet)} QUATLOOS, you have {POUCH} left ")
-    inp = input("how many deck of cards would you like: ")
+    print(f"you bet {int(bet)} quatloos, you have {POUCH} left ")
+
 
     player_hand(inp)
     dealer_hand(inp)
 
-    inp2 = input('do you want to hit or not: (Y)/(N): ').lower()
-    if inp2 == 'y':
+    inp2 = input('do you want to hit or stay? ').lower()
+    if inp2 == 'hit':
         player_deal()
-    elif inp2 == 'n':
+    elif inp2 == 'stay':
         pass
     # print(PLAYER_VALUES)
     print("YOUR HAND", PLAYER_CARDS, " values", sum(PLAYER_VALUES))
@@ -208,8 +212,6 @@ def game_loop():
             new_price = int(amount) + int(bet) * 2
             POUCH[0] = new_price
         print(f"You have {POUCH} left ")
-
-
 
     elif sum_dealer > 21 and sum_player < 21:
         print("dealer bust player wins")
